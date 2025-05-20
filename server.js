@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const session = require('express-session');
 const passport = require('passport');
+const MongoStore = require('connect-mongo');
 
 const uploadRouter = require('./routers/serverupload');
 const recordRouter = require('./routers/serverrecord');
@@ -22,9 +23,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI, // add this to .env
+    ttl: 14 * 24 * 60 * 60 // Session expiration in seconds
+  })
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
