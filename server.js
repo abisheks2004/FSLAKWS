@@ -50,6 +50,11 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+app.get('/', (req, res) => {
+  res.send('✅ Railway deployment successful!');
+});
+
+
 // ✅ Serve dashboard (index.html) only after login
 app.get('/dashboard', (req, res) => {
   if (!req.isAuthenticated()) return res.redirect('/login');
