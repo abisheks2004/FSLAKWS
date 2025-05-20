@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 const session = require('express-session');
 const passport = require('passport');
-const MongoStore = require('connect-mongo');
+
 
 const uploadRouter = require('./routers/serverupload');
 const recordRouter = require('./routers/serverrecord');
@@ -15,6 +15,9 @@ const port = process.env.PORT || 5500;
 
 
 // in your connection code
+
+const mongoose = require('mongoose');
+
 const rawPass = 'abisheka067';  
 const encodedPass = encodeURIComponent(rawPass);  
 const uri = `mongodb+srv://abisheka067:${encodedPass}@cluster0.is6cuef.mongodb.net/fsla_kws?retryWrites=true&w=majority`;
