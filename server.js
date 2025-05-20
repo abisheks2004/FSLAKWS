@@ -10,7 +10,8 @@ const recordRouter = require('./routers/serverrecord');
 const authRouter = require('./routers/auth'); // ✅ Import auth router
 
 const app = express();
-const port = 5500;
+const port = process.env.PORT || 5500;
+
 
 // Middleware
 app.use(cors({ origin: '*', methods: ['GET', 'POST'] }));
@@ -19,10 +20,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Session & Passport
 app.use(session({
-  secret: 'your_secret_key',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
