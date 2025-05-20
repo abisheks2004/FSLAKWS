@@ -4,6 +4,8 @@ const path = require('path');
 const fs = require('fs');
 const session = require('express-session');
 const passport = require('passport');
+const MongoStore = require('connect-mongo');
+
 
 
 const uploadRouter = require('./routers/serverupload');
@@ -16,7 +18,16 @@ const port = process.env.PORT || 5500;
 
 // in your connection code
 
-const mongoose = require('mongoose');
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    ttl: 14 * 24 * 60 * 60  // 14 days
+  })
+}));
+
 
 const rawPass = 'abisheka067';  
 const encodedPass = encodeURIComponent(rawPass);  
