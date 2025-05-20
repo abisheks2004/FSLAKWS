@@ -1,8 +1,0 @@
-# Handle all text files with LF
-* text=auto
-
-# Ensure consistent line endings
-*.js     text
-*.json   text
-*.env    text
-*.sh     text eol=lf
