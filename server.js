@@ -14,6 +14,12 @@ const app = express();
 const port = process.env.PORT || 5500;
 
 
+// in your connection code
+const rawPass = 'abisheka067';  
+const encodedPass = encodeURIComponent(rawPass);  
+const uri = `mongodb+srv://abisheka067:${encodedPass}@cluster0.is6cuef.mongodb.net/fsla_kws?retryWrites=true&w=majority`;
+
+
 // Middleware
 app.use(cors({ origin: '*', methods: ['GET', 'POST'] }));
 app.use(express.json());
