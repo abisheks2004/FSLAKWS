@@ -14,6 +14,6 @@
     "passport-google-oauth20": "^2.0.0"
   },
   "scripts": {
-  "start": "node login.js"
+  "start": "node server.js"
 }
 }
